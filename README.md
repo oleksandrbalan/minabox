@@ -1,7 +1,6 @@
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.oleksandrbalan/minabox.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/io.github.oleksandrbalan/minabox)
 
-TODO: Place correct image
-<img align="right" src="https://user-images.githubusercontent.com/20944869/211682502-ea30da26-178f-4e91-82d3-75207dbb6356.png">
+<img align="right" width="128" src="https://github.com/oleksandrbalan/minabox/assets/20944869/d473fe40-3f12-4be8-96e5-ffcb4b7c4082">
 
 # Mina Box
 
@@ -9,9 +8,11 @@ Lazy box library for Jetpack Compose.
 
 Mina box allows to display lazy loaded items on the 2D plane. It is build on the `LazyLayout` and provides methods to register item(s) and handles scrolling on the plane.
 
+<img align="left" width="100" src="https://github.com/oleksandrbalan/minabox/assets/20944869/0712e770-7ba3-4316-802a-c0f5feaa7d22">
+
 ## Mina?
 
-Maybe you are asking yourself why library has such a strange name? It is named after my cat "Mina", and she is too damn lazy and likes to sit in the boxes, thus I think it matches perfectly this layout's purpose.
+Maybe you are asking yourself why library has such a strange name? It is named after our family cat "Mina", and she is too damn lazy and likes to sit in the boxes, thus I think it matches perfectly this layout's purpose.
 
 ## Usage
 
