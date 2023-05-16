@@ -82,3 +82,21 @@ There are two libraries which are build on top of the Mina Box layout:
 * `ProgramGuide` - displays program guide data on the two directional plane.
 
 Make sure to check them for tip & tricks if you want to build your own implementation.
+
+## Examples
+
+Simple table with items aligned in columns and rows.
+
+https://github.com/oleksandrbalan/minabox/assets/20944869/33f8f1af-65bc-4410-9745-98ffc5f865f3
+
+⬡ Fancy hexagons ⬡. 
+
+https://github.com/oleksandrbalan/minabox/assets/20944869/3c6fb1aa-cd39-4111-9ea4-3e57bc3ba73d
+
+Lazy table with pinned columns & rows, check `LazyTable` library.
+
+https://github.com/oleksandrbalan/minabox/assets/20944869/251b3cfd-5a69-4994-8f75-f9dd62d16c03
+
+Program Guide (aka EPG), check `ProgramGuide` library.
+
+https://github.com/oleksandrbalan/minabox/assets/20944869/9fa208c3-0b33-4ecd-b099-b3bad8e11f78
