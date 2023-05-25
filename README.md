@@ -93,10 +93,10 @@ https://github.com/oleksandrbalan/minabox/assets/20944869/33f8f1af-65bc-4410-974
 
 https://github.com/oleksandrbalan/minabox/assets/20944869/3c6fb1aa-cd39-4111-9ea4-3e57bc3ba73d
 
-Lazy table with pinned columns & rows, check `LazyTable` library.
+Lazy table with pinned columns & rows, check [LazyTable](https://github.com/oleksandrbalan/lazytable) library.
 
 https://github.com/oleksandrbalan/minabox/assets/20944869/251b3cfd-5a69-4994-8f75-f9dd62d16c03
 
-Program Guide (aka EPG), check `ProgramGuide` library.
+Program Guide (aka EPG), check [ProgramGuide](https://github.com/oleksandrbalan/programguide) library.
 
 https://github.com/oleksandrbalan/minabox/assets/20944869/9fa208c3-0b33-4ecd-b099-b3bad8e11f78
