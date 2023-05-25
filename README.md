@@ -1,6 +1,6 @@
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.oleksandrbalan/minabox.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/io.github.oleksandrbalan/minabox)
 
-<img align="right" width="128" src="https://github.com/oleksandrbalan/minabox/assets/20944869/d473fe40-3f12-4be8-96e5-ffcb4b7c4082">
+<img align="right" width="128" src="https://github.com/oleksandrbalan/minabox/assets/20944869/616a3df3-d83a-4e2f-896a-b6be6cb98a29">
 
 # Mina Box
 
@@ -8,7 +8,7 @@ Lazy box library for Jetpack Compose.
 
 Mina box allows to display lazy loaded items on the 2D plane. It is build on the `LazyLayout` and provides methods to register item(s) and handles scrolling on the plane.
 
-<img align="left" width="100" src="https://github.com/oleksandrbalan/minabox/assets/20944869/0712e770-7ba3-4316-802a-c0f5feaa7d22">
+<img align="left" width="100" src="https://github.com/oleksandrbalan/minabox/assets/20944869/7af845f2-617f-4edb-bf34-9a12335f963d">
 
 ## Mina?
 
@@ -87,16 +87,16 @@ Make sure to check them for tip & tricks if you want to build your own implement
 
 Simple table with items aligned in columns and rows.
 
-https://github.com/oleksandrbalan/minabox/assets/20944869/33f8f1af-65bc-4410-9745-98ffc5f865f3
+https://github.com/oleksandrbalan/minabox/assets/20944869/da8a8733-441b-47cb-ada6-7240c7f0645f
 
 ⬡ Fancy hexagons ⬡. 
 
-https://github.com/oleksandrbalan/minabox/assets/20944869/3c6fb1aa-cd39-4111-9ea4-3e57bc3ba73d
+https://github.com/oleksandrbalan/minabox/assets/20944869/45cc619a-8517-456c-8124-5399d2c07891
 
 Lazy table with pinned columns & rows, check [LazyTable](https://github.com/oleksandrbalan/lazytable) library.
 
-https://github.com/oleksandrbalan/minabox/assets/20944869/251b3cfd-5a69-4994-8f75-f9dd62d16c03
+https://github.com/oleksandrbalan/minabox/assets/20944869/6c74bd21-a1d5-4f9d-92a6-823b6bf8ec5f
 
 Program Guide (aka EPG), check [ProgramGuide](https://github.com/oleksandrbalan/programguide) library.
 
-https://github.com/oleksandrbalan/minabox/assets/20944869/9fa208c3-0b33-4ecd-b099-b3bad8e11f78
+https://github.com/oleksandrbalan/minabox/assets/20944869/a6db5dbe-f5a7-4fa5-aae0-9ca16d10a84b
