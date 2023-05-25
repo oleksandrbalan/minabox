@@ -78,8 +78,8 @@ See Demo application and [examples](demo/src/main/kotlin/eu/wewox/minabox/screen
 ### More usages
 
 There are two libraries which are build on top of the Mina Box layout:
-* `LazyTable` - displays columns and rows of data on the two directional plane.
-* `ProgramGuide` - displays program guide data on the two directional plane.
+* [LazyTable](https://github.com/oleksandrbalan/lazytable) - displays columns and rows of data on the two directional plane.
+* [ProgramGuide](https://github.com/oleksandrbalan/programguide) - displays program guide data on the two directional plane.
 
 Make sure to check them for tip & tricks if you want to build your own implementation.
 
