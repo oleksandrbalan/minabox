@@ -51,7 +51,7 @@ dependencies {
 
 The core element of the `MinaBox` layout is a `content` lambda, where items are registered in the similar manner as in `LazyColumn` or `LazyRow`. The main difference is that each item must provide its position and size in the `layoutInfo` lambda. Each item could be locked horizontally or vertically to create pinned rows and / or columns of data. The item size could be defined absolutely (in pixels) or relatively to parent size.
 
-```
+```kotlin
 val columns = 10
 val rows = 10
 val width = 128f // pixels
