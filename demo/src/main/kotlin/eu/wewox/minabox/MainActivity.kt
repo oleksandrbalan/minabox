@@ -27,6 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.core.view.WindowCompat
 import eu.wewox.minabox.screens.MinaBoxAdvancedScreen
+import eu.wewox.minabox.screens.MinaBoxContentPaddingScreen
 import eu.wewox.minabox.screens.MinaBoxSimpleScreen
 import eu.wewox.minabox.ui.components.TopBar
 import eu.wewox.minabox.ui.theme.MinaBoxTheme
@@ -58,6 +59,7 @@ class MainActivity : ComponentActivity() {
                     when (selected) {
                         null -> RootScreen(onExampleClick = { example = it })
                         Example.MinaBoxSimple -> MinaBoxSimpleScreen()
+                        Example.MinaBoxContentPadding -> MinaBoxContentPaddingScreen()
                         Example.MinaBoxAdvanced -> MinaBoxAdvancedScreen()
                     }
                 }

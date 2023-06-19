@@ -12,6 +12,7 @@
 /.idea/kotlinc.xml
 /.idea/vcs.xml
 /.idea/misc.xml
+/.idea/inspectionProfiles
 .DS_Store
 /build
 /captures
