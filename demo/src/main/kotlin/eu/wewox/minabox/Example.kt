@@ -14,6 +14,10 @@ enum class Example(
         "Mina Box Simple",
         "Simple Mina Box layout example"
     ),
+    MinaBoxContentPadding(
+        "Mina Box Padding",
+        "Mina Box example with content padding"
+    ),
     MinaBoxAdvanced(
         "Mina Box Advanced",
         "Advanced Mina Box layout example"

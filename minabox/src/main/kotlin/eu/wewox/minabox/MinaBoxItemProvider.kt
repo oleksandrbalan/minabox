@@ -4,7 +4,6 @@ import androidx.compose.foundation.lazy.layout.IntervalList
 import androidx.compose.foundation.lazy.layout.LazyLayoutItemProvider
 import androidx.compose.foundation.lazy.layout.getDefaultLazyLayoutKey
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
 import kotlin.math.max
@@ -80,21 +79,27 @@ internal class MinaBoxItemProvider(
      *
      * @param translateX The current translation along X axis.
      * @param translateY The current translation along Y axis.
+     * @param contentPadding The content padding in pixels.
      * @param size The size of the viewport.
      * @return A map of visible item indices with its position and size.
      */
-    fun getItems(translateX: Float, translateY: Float, size: Size): Map<Int, Rect> {
+    fun getItems(
+        translateX: Float,
+        translateY: Float,
+        contentPadding: Rect,
+        size: Size
+    ): Map<Int, Rect> {
         val viewport = Rect(
-            left = translateX,
-            top = translateY,
-            right = translateX + size.width,
-            bottom = translateY + size.height,
+            left = translateX - contentPadding.left,
+            top = translateY - contentPadding.top,
+            right = translateX - contentPadding.left + size.width,
+            bottom = translateY - contentPadding.top + size.height,
         )
 
         return items
             .filterValues { it.overlaps(viewport) }
             .mapValues { (_, info) ->
-                info.translate(translateX, translateY, viewport)
+                info.translate(translateX, translateY, contentPadding, viewport)
             }
     }
 
@@ -136,13 +141,18 @@ private fun MinaBoxItem.overlaps(other: Rect): Boolean {
     }
 }
 
-private fun MinaBoxItem.translate(translateX: Float, translateY: Float, viewport: Rect): Rect {
+private fun MinaBoxItem.translate(
+    translateX: Float,
+    translateY: Float,
+    contentPadding: Rect,
+    viewport: Rect
+): Rect {
     val itemTranslateX = translateX.takeUnless { lockHorizontally } ?: 0f
     val itemTranslateY = translateY.takeUnless { lockVertically } ?: 0f
-    val newX = this.x - itemTranslateX
-    val newY = this.y - itemTranslateY
-    val width = width.resolve(viewport.width)
-    val height = height.resolve(viewport.height)
+    val newX = this.x - itemTranslateX + contentPadding.left
+    val newY = this.y - itemTranslateY + contentPadding.top
+    val width = width.resolve(viewport.width - contentPadding.left - contentPadding.right)
+    val height = height.resolve(viewport.height - contentPadding.top - contentPadding.bottom)
     return Rect(
         left = newX,
         top = newY,
