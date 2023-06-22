@@ -1,7 +1,33 @@
 plugins {
-	alias(libs.plugins.android.library)
-	alias(libs.plugins.kotlin)
+	kotlin("multiplatform")
+	id("org.jetbrains.compose")
+	id("com.android.library")
 	alias(libs.plugins.mavenpublish)
+}
+
+kotlin {
+	android()
+	jvm()
+
+	sourceSets {
+		val commonMain by getting {
+			dependencies {
+				api(compose.runtime)
+				api(compose.foundation)
+				api(compose.material3)
+			}
+		}
+
+		val jvmMain by getting
+
+		val androidMain by getting {
+			dependencies {
+				/*implementation(platform(libs.compose.bom))
+				implementation(libs.compose.foundation)
+				implementation(libs.compose.ui)*/
+			}
+		}
+	}
 }
 
 android {
@@ -22,16 +48,4 @@ android {
 	composeOptions {
 		kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
 	}
-	kotlinOptions {
-		jvmTarget = libs.versions.java.jvmTarget.get()
-		freeCompilerArgs = freeCompilerArgs +
-				"-Xexplicit-api=strict" +
-				"-opt-in=androidx.compose.foundation.ExperimentalFoundationApi"
-	}
-}
-
-dependencies {
-	implementation(platform(libs.compose.bom))
-	implementation(libs.compose.foundation)
-	implementation(libs.compose.ui)
 }
