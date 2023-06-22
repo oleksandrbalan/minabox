@@ -1,7 +1,7 @@
 plugins {
-	kotlin("multiplatform")
-	id("org.jetbrains.compose")
-	id("com.android.library")
+	alias(libs.plugins.android.library)
+	alias(libs.plugins.kotlin.multiplatform)
+	alias(libs.plugins.jetbrains.compose)
 	alias(libs.plugins.mavenpublish)
 }
 
@@ -20,13 +20,7 @@ kotlin {
 
 		val jvmMain by getting
 
-		val androidMain by getting {
-			dependencies {
-				/*implementation(platform(libs.compose.bom))
-				implementation(libs.compose.foundation)
-				implementation(libs.compose.ui)*/
-			}
-		}
+		val androidMain by getting
 	}
 }
 

@@ -29,9 +29,8 @@ import eu.wewox.minabox.ui.components.TopBar
 import eu.wewox.minabox.ui.theme.MinaBoxTheme
 import eu.wewox.minabox.ui.theme.SpacingMedium
 
-
 @Composable
-fun App(backHandler: @Composable (Example?, onBackPressed: () -> Unit) -> Unit = { _, _  -> }) {
+fun App(backHandler: @Composable (Example?, onBackPressed: () -> Unit) -> Unit = { _, _ -> }) {
     MinaBoxTheme {
         var example by rememberSaveable { mutableStateOf<Example?>(null) }
 
