@@ -39,6 +39,11 @@ android {
 	buildFeatures {
 		compose = true
 	}
+	kotlin {
+		android {
+			publishLibraryVariants("release", "debug")
+		}
+	}
 	composeOptions {
 		kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
 	}
