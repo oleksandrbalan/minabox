@@ -1,6 +1,8 @@
 package eu.wewox.minabox
 
 import androidx.compose.foundation.gestures.detectDragGestures
+import androidx.compose.foundation.gestures.detectHorizontalDragGestures
+import androidx.compose.foundation.gestures.detectVerticalDragGestures
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.layout.LazyLayout
 import androidx.compose.runtime.Composable
@@ -11,8 +13,10 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clipToBounds
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.input.pointer.PointerInputChange
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.input.pointer.util.VelocityTracker
 import androidx.compose.ui.platform.LocalDensity
@@ -33,6 +37,7 @@ import kotlin.math.min
  * @param state The state which could be used to observe and change translation offset.
  * @param contentPadding A padding around the whole content. This will add padding for the content
  * after it has been clipped, which is not possible via modifier param.
+ * @param scrollDirection Determines which directions are allowed to scroll.
  * @param content The lambda block which describes the content. Inside this block you can use
  * [MinaBoxScope.items] method to add items.
  */
@@ -41,6 +46,7 @@ public fun MinaBox(
     modifier: Modifier = Modifier,
     state: MinaBoxState = rememberMinaBoxState(),
     contentPadding: PaddingValues = PaddingValues(0.dp),
+    scrollDirection: MinaBoxScrollDirection = MinaBoxScrollDirection.BOTH,
     content: MinaBoxScope.() -> Unit
 ) {
     val scope = rememberCoroutineScope()
@@ -53,7 +59,7 @@ public fun MinaBox(
     LazyLayout(
         modifier = modifier
             .clipToBounds()
-            .lazyLayoutPointerInput(state),
+            .lazyLayoutPointerInput(state, scrollDirection),
         itemProvider = itemProvider,
     ) { constraints ->
         val size = Size(constraints.maxWidth.toFloat(), constraints.maxHeight.toFloat())
@@ -147,24 +153,62 @@ private fun PaddingValues.toPx(): Rect {
     }
 }
 
-private fun Modifier.lazyLayoutPointerInput(state: MinaBoxState): Modifier =
-    pointerInput(Unit) {
-        val velocityTracker = VelocityTracker()
-        coroutineScope {
-            detectDragGestures(
-                onDragEnd = {
-                    val velocity = velocityTracker.calculateVelocity()
-                    launch {
-                        state.flingBy(velocity)
-                    }
-                },
+private fun Modifier.lazyLayoutPointerInput(
+    state: MinaBoxState,
+    scrollDirection: MinaBoxScrollDirection,
+): Modifier = pointerInput(Unit) {
+    val velocityTracker = VelocityTracker()
+    coroutineScope {
+        when (scrollDirection) {
+            MinaBoxScrollDirection.BOTH -> detectDragGestures(
+                onDragEnd = { onDragEnd(state, velocityTracker, scrollDirection, this) },
                 onDrag = { change, dragAmount ->
-                    change.consume()
-                    velocityTracker.addPosition(change.uptimeMillis, change.position)
-                    launch {
-                        state.dragBy(dragAmount)
-                    }
+                    onDrag(state, change, dragAmount, velocityTracker, this)
+                }
+            )
+
+            MinaBoxScrollDirection.HORIZONTAL -> detectHorizontalDragGestures(
+                onDragEnd = { onDragEnd(state, velocityTracker, scrollDirection, this) },
+                onHorizontalDrag = { change, dragAmount ->
+                    onDrag(state, change, Offset(dragAmount, 0f), velocityTracker, this)
+                }
+            )
+
+            MinaBoxScrollDirection.VERTICAL -> detectVerticalDragGestures(
+                onDragEnd = { onDragEnd(state, velocityTracker, scrollDirection, this) },
+                onVerticalDrag = { change, dragAmount ->
+                    onDrag(state, change, Offset(0f, dragAmount), velocityTracker, this)
                 }
             )
         }
     }
+}
+
+private fun onDrag(
+    state: MinaBoxState,
+    change: PointerInputChange,
+    dragAmount: Offset,
+    velocityTracker: VelocityTracker,
+    scope: CoroutineScope
+) {
+    change.consume()
+    velocityTracker.addPosition(change.uptimeMillis, change.position)
+    scope.launch {
+        state.dragBy(dragAmount)
+    }
+}
+
+private fun onDragEnd(
+    state: MinaBoxState,
+    velocityTracker: VelocityTracker,
+    scrollDirection: MinaBoxScrollDirection,
+    scope: CoroutineScope
+) {
+    var velocity = velocityTracker.calculateVelocity()
+    velocity = when (scrollDirection) {
+        MinaBoxScrollDirection.BOTH -> velocity
+        MinaBoxScrollDirection.HORIZONTAL -> velocity.copy(velocity.x, 0f)
+        MinaBoxScrollDirection.VERTICAL -> velocity.copy(0f, velocity.y)
+    }
+    scope.launch { state.flingBy(velocity) }
+}
