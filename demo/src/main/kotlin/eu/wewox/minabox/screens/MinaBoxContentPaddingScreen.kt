@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import eu.wewox.minabox.Example
 import eu.wewox.minabox.MinaBox
 import eu.wewox.minabox.MinaBoxItem
+import eu.wewox.minabox.MinaBoxScrollDirection
 import eu.wewox.minabox.ui.components.TopBar
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -48,6 +49,7 @@ fun MinaBoxContentPaddingScreen() {
             val itemHeight = itemWidth * 2
 
             MinaBox(
+                scrollDirection = MinaBoxScrollDirection.VERTICAL,
                 contentPadding = PaddingValues(
                     top = ItemsGap + padding.calculateTopPadding(),
                     bottom = ItemsGap + padding.calculateBottomPadding(),
