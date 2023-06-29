@@ -12,6 +12,7 @@ kotlin {
 		val commonMain by getting {
 			dependencies {
 				implementation(project(":minabox"))
+				implementation(compose.material3)
 			}
 		}
 
@@ -35,5 +36,11 @@ android {
 	compileOptions {
 		sourceCompatibility = JavaVersion.toVersion(libs.versions.java.sourceCompatibility.get())
 		targetCompatibility = JavaVersion.toVersion(libs.versions.java.targetCompatibility.get())
+	}
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+	kotlinOptions {
+		jvmTarget = libs.versions.java.jvmTarget.get()
 	}
 }

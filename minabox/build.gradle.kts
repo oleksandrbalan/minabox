@@ -14,7 +14,6 @@ kotlin {
 			dependencies {
 				api(compose.runtime)
 				api(compose.foundation)
-				api(compose.material3)
 			}
 		}
 
@@ -46,5 +45,11 @@ android {
 	}
 	composeOptions {
 		kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
+	}
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+	kotlinOptions {
+		jvmTarget = libs.versions.java.jvmTarget.get()
 	}
 }
