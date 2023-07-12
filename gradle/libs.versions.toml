@@ -20,9 +20,9 @@ plugin-detekt = "1.21.0"
 plugin-spotless = "6.5.1"
 plugin-mavenpublish = "0.21.0"
 
-java-jvmTarget = "1.8"
-java-sourceCompatibility = "1.8"
-java-targetCompatibility = "1.8"
+java-jvmTarget = "17"
+java-sourceCompatibility = "17"
+java-targetCompatibility = "17"
 
 [libraries]
 compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-bom" }
