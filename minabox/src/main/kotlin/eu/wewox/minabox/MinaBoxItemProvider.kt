@@ -67,7 +67,7 @@ internal class MinaBoxItemProvider(
         }
 
     @Composable
-    override fun Item(index: Int) {
+    override fun Item(index: Int, key: Any) {
         withLocalIntervalIndex(index) { localIndex, content ->
             content.item.invoke(localIndex)
         }

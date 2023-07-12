@@ -31,7 +31,7 @@ android {
 }
 
 dependencies {
-	implementation(platform(libs.compose.bom))
-	implementation(libs.compose.foundation)
+    implementation(platform(libs.chrisbanes.compose.bom))
+    implementation(libs.compose.foundation)
 	implementation(libs.compose.ui)
 }
