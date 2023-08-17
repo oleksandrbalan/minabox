@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -32,13 +31,15 @@ import kotlinx.coroutines.launch
 /**
  * Mina Box example with content padding.
  */
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MinaBoxContentPaddingScreen() {
+fun MinaBoxContentPaddingScreen(
+    onBackClick: () -> Unit,
+) {
     Scaffold(
         topBar = {
             TopBar(
                 title = Example.MinaBoxContentPadding.label,
+                onBackClick = onBackClick,
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(MaterialTheme.colorScheme.background.copy(alpha = 0.7f))

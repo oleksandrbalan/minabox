@@ -2,7 +2,6 @@ package eu.wewox.minabox.screens
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -19,11 +18,17 @@ import eu.wewox.minabox.ui.components.TopBar
 /**
  * Simple Mina Box layout example.
  */
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MinaBoxSimpleScreen() {
+fun MinaBoxSimpleScreen(
+    onBackClick: () -> Unit,
+) {
     Scaffold(
-        topBar = { TopBar(Example.MinaBoxSimple.label) }
+        topBar = {
+            TopBar(
+                title = Example.MinaBoxSimple.label,
+                onBackClick = onBackClick
+            )
+        }
     ) { padding ->
         val itemSizePx = with(LocalDensity.current) { ItemSize.toSize() }
         MinaBox(modifier = Modifier.padding(padding)) {

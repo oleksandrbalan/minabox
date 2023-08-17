@@ -1,6 +1,5 @@
 package eu.wewox.minabox
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.gestures.detectHorizontalDragGestures
 import androidx.compose.foundation.gestures.detectVerticalDragGestures
@@ -42,7 +41,6 @@ import kotlin.math.min
  * @param content The lambda block which describes the content. Inside this block you can use
  * [MinaBoxScope.items] method to add items.
  */
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 public fun MinaBox(
     modifier: Modifier = Modifier,

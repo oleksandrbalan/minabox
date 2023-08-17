@@ -6,7 +6,7 @@ plugins {
 }
 
 kotlin {
-	android()
+	androidTarget()
 	jvm()
 
 	sourceSets {
@@ -20,6 +20,10 @@ kotlin {
 		val jvmMain by getting
 
 		val androidMain by getting
+
+		all {
+			languageSettings.optIn("androidx.compose.foundation.ExperimentalFoundationApi")
+		}
 	}
 }
 
@@ -39,7 +43,9 @@ android {
 		compose = true
 	}
 	kotlin {
-		android {
+		explicitApi()
+
+		androidTarget {
 			publishLibraryVariants("release", "debug")
 		}
 	}

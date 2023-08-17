@@ -5,7 +5,7 @@ plugins {
 }
 
 kotlin {
-	android()
+	androidTarget()
 	jvm()
 
 	sourceSets {
@@ -18,12 +18,10 @@ kotlin {
 
 		val jvmMain by getting
 
-		val androidMain by getting {
-			dependencies {
-				implementation(libs.androidx.graphics.shapes)
-				implementation(libs.compose.uitooling)
-				implementation(libs.compose.uitoolingpreview)
-			}
+		val androidMain by getting
+
+		all {
+			languageSettings.optIn("androidx.compose.material3.ExperimentalMaterial3Api")
 		}
 	}
 }
