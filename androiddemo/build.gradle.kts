@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin)
+    id("convention.jvm.toolchain")
 }
 
 android {
@@ -25,15 +26,11 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.toVersion(libs.versions.java.sourceCompatibility.get())
-        targetCompatibility = JavaVersion.toVersion(libs.versions.java.targetCompatibility.get())
-    }
-    kotlinOptions {
-        jvmTarget = libs.versions.java.jvmTarget.get()
     }
     buildFeatures {
         compose = true

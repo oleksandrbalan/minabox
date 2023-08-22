@@ -1,0 +1,7 @@
+use_frameworks!
+
+platform :ios, '14.1'
+
+target 'iosApp' do
+  pod 'demo', :path => '../demo'
+end

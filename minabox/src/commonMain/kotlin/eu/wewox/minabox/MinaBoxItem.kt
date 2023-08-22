@@ -49,16 +49,14 @@ public class MinaBoxItem(
          *
          * @property value The value in pixels.
          */
-        @JvmInline
-        public value class Absolute(public val value: Float) : Value
+        public class Absolute(public val value: Float) : Value
 
         /**
          * The size should be relative to the parent's size.
          *
          * @property fraction The fraction of the parent size to occupy.
          */
-        @JvmInline
-        public value class MatchParent(public val fraction: Float) : Value
+        public class MatchParent(public val fraction: Float) : Value
 
         /**
          * Resolves the actual size of the [Value].
