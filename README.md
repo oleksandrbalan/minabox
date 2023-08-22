@@ -4,9 +4,13 @@
 
 # Mina Box
 
-Lazy box library for Jetpack Compose.
+Lazy box library for Compose UI.
 
 Mina box allows to display lazy loaded items on the 2D plane. It is build on the `LazyLayout` and provides methods to register item(s) and handles scrolling on the plane.
+
+## Multiplatform
+
+Library supports [Android](https://developer.android.com/jetpack/compose), [iOS](https://github.com/JetBrains/compose-multiplatform-ios-android-template/#readme) and [Desktop](https://github.com/JetBrains/compose-multiplatform-desktop-template/#readme) (Windows, MacOS, Linux) targets.
 
 <img align="left" width="100" src="https://github.com/oleksandrbalan/minabox/assets/20944869/7af845f2-617f-4edb-bf34-9a12335f963d">
 
