@@ -1,61 +1,58 @@
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+
 plugins {
-	alias(libs.plugins.android.library)
-	alias(libs.plugins.kotlin.multiplatform)
-	alias(libs.plugins.jetbrains.compose)
-	alias(libs.plugins.mavenpublish)
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.jetbrains.compose)
+    alias(libs.plugins.mavenpublish)
+    id("convention.jvm.toolchain")
 }
 
 kotlin {
-	androidTarget()
-	jvm()
+    @OptIn(ExperimentalKotlinGradlePluginApi::class)
+    targetHierarchy.default()
 
-	sourceSets {
-		val commonMain by getting {
-			dependencies {
-				api(compose.runtime)
-				api(compose.foundation)
-			}
-		}
+    androidTarget()
 
-		val jvmMain by getting
+    jvm()
 
-		val androidMain by getting
+    iosX64()
+    iosArm64()
+    iosSimulatorArm64()
 
-		all {
-			languageSettings.optIn("androidx.compose.foundation.ExperimentalFoundationApi")
-		}
-	}
+    sourceSets {
+        val commonMain by getting {
+            dependencies {
+                api(compose.runtime)
+                api(compose.foundation)
+            }
+        }
+
+        all {
+            languageSettings.optIn("androidx.compose.foundation.ExperimentalFoundationApi")
+        }
+    }
 }
 
 android {
-	namespace = "eu.wewox.minabox"
+    namespace = "eu.wewox.minabox"
 
-	compileSdk = libs.versions.sdk.compile.get().toInt()
+    compileSdk = libs.versions.sdk.compile.get().toInt()
 
-	defaultConfig {
-		minSdk = libs.versions.sdk.min.get().toInt()
-	}
-	compileOptions {
-		sourceCompatibility = JavaVersion.toVersion(libs.versions.java.sourceCompatibility.get())
-		targetCompatibility = JavaVersion.toVersion(libs.versions.java.targetCompatibility.get())
-	}
-	buildFeatures {
-		compose = true
-	}
-	kotlin {
-		explicitApi()
+    defaultConfig {
+        minSdk = libs.versions.sdk.min.get().toInt()
+    }
+    buildFeatures {
+        compose = true
+    }
+    kotlin {
+        explicitApi()
 
-		androidTarget {
-			publishLibraryVariants("release", "debug")
-		}
-	}
-	composeOptions {
-		kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
-	}
-}
-
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-	kotlinOptions {
-		jvmTarget = libs.versions.java.jvmTarget.get()
-	}
+        androidTarget {
+            publishLibraryVariants("release", "debug")
+        }
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
+    }
 }

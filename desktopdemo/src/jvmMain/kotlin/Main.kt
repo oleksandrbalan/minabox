@@ -3,7 +3,10 @@ import androidx.compose.ui.window.application
 import eu.wewox.minabox.App
 
 fun main() = application {
-    Window(onCloseRequest = ::exitApplication) {
+    Window(
+        onCloseRequest = ::exitApplication,
+        title = "MinaBox",
+    ) {
         App()
     }
 }

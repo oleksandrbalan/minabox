@@ -1,44 +1,55 @@
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+
 plugins {
-	alias(libs.plugins.kotlin.multiplatform)
-	alias(libs.plugins.jetbrains.compose)
-	alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.jetbrains.cocoapods)
+    alias(libs.plugins.jetbrains.compose)
+    alias(libs.plugins.android.library)
+    id("convention.jvm.toolchain")
 }
 
 kotlin {
-	androidTarget()
-	jvm()
+    @OptIn(ExperimentalKotlinGradlePluginApi::class)
+    targetHierarchy.default()
 
-	sourceSets {
-		val commonMain by getting {
-			dependencies {
-				implementation(project(":minabox"))
-				implementation(compose.material3)
-			}
-		}
+    androidTarget()
 
-		val jvmMain by getting
+    jvm()
 
-		val androidMain by getting
+    iosX64()
+    iosArm64()
+    iosSimulatorArm64()
 
-		all {
-			languageSettings.optIn("androidx.compose.material3.ExperimentalMaterial3Api")
-		}
-	}
+    cocoapods {
+        version = "1.0.0"
+        summary = "Demo Compose Multiplatform module"
+        homepage = "---"
+        ios.deploymentTarget = "14.1"
+        podfile = project.file("../iosdemo/Podfile")
+        framework {
+            baseName = "demo"
+            isStatic = true
+        }
+        extraSpecAttributes["resources"] =
+            "['src/commonMain/resources/**', 'src/iosMain/resources/**']"
+    }
+
+    sourceSets {
+        val commonMain by getting {
+            dependencies {
+                implementation(project(":minabox"))
+                implementation(compose.material3)
+            }
+        }
+
+        all {
+            languageSettings.optIn("androidx.compose.material3.ExperimentalMaterial3Api")
+        }
+    }
 }
 
 android {
-	namespace = "eu.wewox.minabox.demo"
+    namespace = "eu.wewox.minabox.demo"
 
-	compileSdk = libs.versions.sdk.compile.get().toInt()
-
-	compileOptions {
-		sourceCompatibility = JavaVersion.toVersion(libs.versions.java.sourceCompatibility.get())
-		targetCompatibility = JavaVersion.toVersion(libs.versions.java.targetCompatibility.get())
-	}
-}
-
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-	kotlinOptions {
-		jvmTarget = libs.versions.java.jvmTarget.get()
-	}
+    compileSdk = libs.versions.sdk.compile.get().toInt()
 }
