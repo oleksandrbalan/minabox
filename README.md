@@ -77,7 +77,7 @@ MinaBox {
 }
 ```
 
-See Demo application and [examples](demo/src/main/kotlin/eu/wewox/minabox/screens) for more usage examples.
+See Demo application and [examples](demo/src/commonMain/kotlin/eu/wewox/minabox/screens) for more usage examples.
 
 ### More usages
 
