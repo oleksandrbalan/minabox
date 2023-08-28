@@ -6,7 +6,7 @@ sdk-target = "33"
 # Must be updated along with plugin-compose-jetbrains
 compose-bom = "2023.08.00"
 compose-compiler = "1.5.2"
-accompanist = "0.30.1"
+accompanist = "0.32.0"
 activity-compose = "1.7.2"
 
 plugin-compose-jetbrains = "1.5.0"
