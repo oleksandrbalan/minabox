@@ -55,5 +55,5 @@ dependencies {
     implementation(libs.compose.uitooling)
     implementation(libs.compose.uitoolingpreview)
     implementation(libs.androidx.activitycompose)
-    implementation(libs.accompanist.systemuicontroller)
+    implementation(libs.androidx.splashscreen)
 }
