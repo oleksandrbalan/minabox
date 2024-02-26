@@ -28,6 +28,7 @@
             <option value="$PROJECT_DIR$/demo" />
             <option value="$PROJECT_DIR$/desktopdemo" />
             <option value="$PROJECT_DIR$/minabox" />
+            <option value="$PROJECT_DIR$/wasmdemo" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />
