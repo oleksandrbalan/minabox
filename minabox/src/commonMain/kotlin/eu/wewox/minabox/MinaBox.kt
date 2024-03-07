@@ -136,7 +136,7 @@ private fun MinaBoxPositionProviderImpl?.update(
                 right = (itemsSize.width - size.width).coerceAtLeast(0f),
                 bottom = (itemsSize.height - size.height).coerceAtLeast(0f)
             )
-            state.updateBounds(it, bounds, scope)
+            state.updateBounds(it, bounds, size, scope)
         }
     }
 

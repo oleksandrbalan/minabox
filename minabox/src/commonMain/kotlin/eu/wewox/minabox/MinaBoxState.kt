@@ -13,6 +13,7 @@ import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.unit.Velocity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.coroutineScope
@@ -62,10 +63,13 @@ public class MinaBoxState(
      *
      * @param positionProvider An instance of the position provider.
      * @param maxBounds The max size of the layout.
+     * @param size The viewport size.
+     * @param coroutineScope The scope to use for observing [translateX] and [translateY].
      */
     internal fun updateBounds(
         positionProvider: MinaBoxPositionProvider,
         maxBounds: Rect,
+        size: Size,
         coroutineScope: CoroutineScope,
     ) {
         this.positionProvider = positionProvider
@@ -77,11 +81,11 @@ public class MinaBoxState(
             translateY = Animatable(y)
 
             snapshotFlow { translateX.value }
-                .onEach { updateTranslate() }
+                .onEach { updateTranslate(size) }
                 .launchIn(coroutineScope)
 
             snapshotFlow { translateY.value }
-                .onEach { updateTranslate() }
+                .onEach { updateTranslate(size) }
                 .launchIn(coroutineScope)
         }
 
@@ -94,10 +98,10 @@ public class MinaBoxState(
             upperBound = maxBounds.bottom,
         )
 
-        updateTranslate()
+        updateTranslate(size)
     }
 
-    private fun updateTranslate() {
+    private fun updateTranslate(size: Size) {
         if (
             translate == null ||
             translateX.value != translate?.x ||
@@ -109,7 +113,9 @@ public class MinaBoxState(
                 translateX.value,
                 translateY.value,
                 translateX.upperBound ?: 0f,
-                translateY.upperBound ?: 0f
+                translateY.upperBound ?: 0f,
+                size.width,
+                size.height,
             )
         }
     }
@@ -263,11 +269,15 @@ public class MinaBoxState(
      * @property y Offset on the Y axis in pixels.
      * @property maxX The max offset on on the X axis in pixels.
      * @property maxY The max offset on on the Y axis in pixels.
+     * @property viewportWidth The width of the plane viewport in pixels.
+     * @property viewportHeight The height of the plane viewport in pixels.
      */
     public class Translate(
         public val x: Float,
         public val y: Float,
         public val maxX: Float,
         public val maxY: Float,
+        public val viewportWidth: Float,
+        public val viewportHeight: Float,
     )
 }
