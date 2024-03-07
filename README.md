@@ -10,7 +10,7 @@ Mina box allows to display lazy loaded items on the 2D plane. It is build on the
 
 ## Multiplatform
 
-Library supports [Android](https://developer.android.com/jetpack/compose), [iOS](https://github.com/JetBrains/compose-multiplatform-ios-android-template/#readme) and [Desktop](https://github.com/JetBrains/compose-multiplatform-desktop-template/#readme) (Windows, MacOS, Linux) targets.
+Library supports [Android](https://developer.android.com/jetpack/compose), [iOS](https://github.com/JetBrains/compose-multiplatform-ios-android-template/#readme), [Desktop](https://github.com/JetBrains/compose-multiplatform-desktop-template/#readme) (Windows, MacOS, Linux) and [Wasm](https://github.com/Kotlin/kotlin-wasm-examples/blob/main/compose-example/README.md#compose-multiplatform-for-web) targets.
 
 <img align="left" width="100" src="https://github.com/oleksandrbalan/minabox/assets/20944869/7af845f2-617f-4edb-bf34-9a12335f963d">
 
