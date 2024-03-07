@@ -26,3 +26,5 @@ iosdemo/iosdemo.xcworkspace/*
 iosdemo/iosdemo.xcodeproj/*
 !iosdemo/iosdemo.xcodeproj/project.pbxproj
 demo/shared.podspec
+kotlin-js-store/*
+wasmdemo/build/*
