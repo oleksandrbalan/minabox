@@ -4,13 +4,13 @@ sdk-min = "21"
 sdk-target = "34"
 
 # Must be updated along with compose-multiplatform
-compose-bom = "2024.02.02"
-compose-multiplatform = "1.6.0"
+compose-bom = "2024.09.00"
+compose-multiplatform = "1.7.0-beta01"
 compose-compiler = "1.5.10"
-activity-compose = "1.8.2"
+activity-compose = "1.9.2"
 core-splashscreen = "1.0.1"
 
-plugin-android-gradle = "8.3.0"
+plugin-android-gradle = "8.6.0"
 plugin-kotlin = "1.9.22"
 plugin-detekt = "1.21.0"
 plugin-spotless = "6.5.1"

@@ -1,6 +1,7 @@
 *.iml
 .gradle
 /local.properties
+/.idea/.name
 /.idea/artifacts
 /.idea/caches
 /.idea/libraries
@@ -15,6 +16,8 @@
 /.idea/misc.xml
 /.idea/inspectionProfiles
 /.idea/shelf
+/.idea/deploymentTargetSelector.xml
+/.idea/runConfigurations.xml
 .DS_Store
 /build
 /captures
