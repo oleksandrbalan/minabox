@@ -58,6 +58,15 @@ public class MinaBoxState(
     public var translate: Translate? by mutableStateOf(null)
         private set
 
+    public fun isInitialized(): Boolean = ::translateX.isInitialized && ::translateY.isInitialized
+
+    public fun getCanvasX(): Float = if(isInitialized()) {
+        translateX.upperBound ?: 1f
+    } else 1f
+    public fun getCanvasY(): Float = if(isInitialized()) {
+        translateY.upperBound ?: 1f
+    } else 1f
+
     /**
      * Updates bounds of the layout and initializes the position provider.
      *

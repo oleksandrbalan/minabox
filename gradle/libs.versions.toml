@@ -1,17 +1,17 @@
 [versions]
-sdk-compile = "34"
+sdk-compile = "35"
 sdk-min = "21"
-sdk-target = "34"
+sdk-target = "35"
 
 # Must be updated along with compose-multiplatform
 compose-bom = "2024.09.00"
-compose-multiplatform = "1.7.0-beta01"
+compose-multiplatform = "1.8.0-alpha02"
 compose-compiler = "1.5.10"
 activity-compose = "1.9.2"
 core-splashscreen = "1.0.1"
 
 plugin-android-gradle = "8.6.0"
-plugin-kotlin = "1.9.22"
+plugin-kotlin = "2.0.21"
 plugin-detekt = "1.21.0"
 plugin-spotless = "6.5.1"
 plugin-mavenpublish = "0.25.3"
@@ -28,6 +28,7 @@ androidx-activitycompose = { module = "androidx.activity:activity-compose", vers
 androidx-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "core-splashscreen" }
 
 [plugins]
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "plugin-kotlin" }
 android-application = { id = "com.android.application", version.ref = "plugin-android-gradle" }
 android-library = { id = "com.android.library", version.ref = "plugin-android-gradle" }
 jetbrains-cocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "plugin-kotlin" }
