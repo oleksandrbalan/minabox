@@ -102,7 +102,7 @@ public fun MinaBox(
 
     val itemProvider = rememberItemProvider(content)
 
-    val visibilityState = remember {
+    val scrollbarsVisibilityState = remember {
         MutableTransitionState(false).apply {
             targetState = scrollBarData.thickness > 0.dp
         }
@@ -121,8 +121,8 @@ public fun MinaBox(
     var shouldShowScrollbarX by remember { mutableStateOf(false) }
 
 
-    val endPaddingForScrollbarY = if (scrollBarData.isOuterTable && shouldShowScrollbarY) ((scrollBarData.padding * 2) + scrollBarData.thickness) else 0.dp
-    val bottomPaddingForScrollbarX = if (scrollBarData.isOuterTable && shouldShowScrollbarX) ((scrollBarData.padding * 2) + scrollBarData.thickness) else 0.dp
+    val endPaddingForScrollbarY = if (scrollbarsVisibilityState.targetState && scrollBarData.isOuterTable && shouldShowScrollbarY) ((scrollBarData.padding * 2) + scrollBarData.thickness) else 0.dp
+    val bottomPaddingForScrollbarX = if (scrollbarsVisibilityState.targetState && scrollBarData.isOuterTable && shouldShowScrollbarX) ((scrollBarData.padding * 2) + scrollBarData.thickness) else 0.dp
 
     Box(contentAlignment = Alignment.BottomEnd) {
         LazyLayout(
@@ -207,7 +207,7 @@ public fun MinaBox(
             val yTimes = (canvasY / boxY).coerceAtLeast(0f)
             val scrollBarYPx = boxY / (yTimes + 1)
             AnimatedVisibility(
-                visibilityState, modifier = Modifier.fillMaxSize(),
+                scrollbarsVisibilityState, modifier = Modifier.fillMaxSize(),
                 enter = fadeIn(tween(700)),
             ) {
                 Box(Modifier.fillMaxSize().padding(scrollBarData.padding)) {
