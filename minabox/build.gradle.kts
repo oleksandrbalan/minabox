@@ -1,9 +1,10 @@
-import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.jetbrains.compose)
+    alias(libs.plugins.compose.compiler)
     alias(libs.plugins.mavenpublish)
     id("convention.jvm.toolchain")
 }
@@ -17,13 +18,31 @@ kotlin {
     iosArm64()
     iosSimulatorArm64()
 
-    @OptIn(ExperimentalWasmDsl::class)
+    @OptIn(org.jetbrains.kotlin.gradle.ExperimentalWasmDsl::class)
     wasmJs {
         browser()
         binaries.library()
     }
 
-    applyDefaultHierarchyTemplate()
+    js {
+        browser()
+        binaries.library()
+    }
+
+    @OptIn(ExperimentalKotlinGradlePluginApi::class)
+    applyDefaultHierarchyTemplate {
+        common {
+            group("web") {
+                withJs()
+                withWasmJs()
+            }
+            group("notWeb") {
+                withJvm()
+                withApple()
+                withAndroidTarget()
+            }
+        }
+    }
 
     sourceSets {
         val commonMain by getting {

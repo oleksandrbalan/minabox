@@ -2,11 +2,13 @@ package eu.wewox.minabox.screens
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
@@ -31,7 +33,13 @@ fun MinaBoxSimpleScreen(
         }
     ) { padding ->
         val itemSizePx = with(LocalDensity.current) { ItemSize.toSize() }
-        MinaBox(modifier = Modifier.padding(padding)) {
+        MinaBox(
+            outerPadding = padding, modifier = Modifier
+                .border(
+                    1.dp, MaterialTheme.colorScheme.primary, RoundedCornerShape(16.dp)
+                )
+                .clip(RoundedCornerShape(16.dp))
+        ) {
             items(
                 count = ColumnsCount * RowsCount,
                 layoutInfo = {
