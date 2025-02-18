@@ -60,7 +60,7 @@ public fun MinaBox(
         modifier = modifier
             .clipToBounds()
             .lazyLayoutPointerInput(state, scrollDirection),
-        itemProvider = itemProvider,
+        itemProvider = { itemProvider },
     ) { constraints ->
         val size = Size(constraints.maxWidth.toFloat(), constraints.maxHeight.toFloat())
 

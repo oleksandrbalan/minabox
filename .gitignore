@@ -18,6 +18,8 @@
 /.idea/shelf
 /.idea/deploymentTargetSelector.xml
 /.idea/runConfigurations.xml
+/.idea/studiobot.xml
+/.kotlin/metadata/*
 .DS_Store
 /build
 /captures
