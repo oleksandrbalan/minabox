@@ -37,15 +37,15 @@ public interface MinaBoxPositionProvider {
     ): Offset
 
     /**
-     * TODO
+     * Returns offset of the item.
      *
-     * @param itemSize
-     * @param alignment
-     * @param paddingStart
-     * @param paddingTop
-     * @param paddingEnd
-     * @param paddingBottom
-     * @return
+     * @param itemSize The item size (width and height).
+     * @param alignment The alignment to align item inside the [MinaBox].
+     * @param paddingStart An additional start padding to tweak alignment.
+     * @param paddingTop An additional top padding to tweak alignment.
+     * @param paddingEnd An additional end padding to tweak alignment.
+     * @param paddingBottom An additional bottom padding to tweak alignment.
+     * @return An item offset.
      */
     public fun align(
         itemSize: IntSize,

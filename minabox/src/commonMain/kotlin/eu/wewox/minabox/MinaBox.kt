@@ -44,7 +44,7 @@ import kotlin.math.min
 @Composable
 public fun MinaBox(
     modifier: Modifier = Modifier,
-    state: MinaBoxState = rememberMinaBoxState(),
+    state: MinaBoxState = rememberSaveableMinaBoxState(),
     contentPadding: PaddingValues = PaddingValues(0.dp),
     scrollDirection: MinaBoxScrollDirection = MinaBoxScrollDirection.BOTH,
     content: MinaBoxScope.() -> Unit
