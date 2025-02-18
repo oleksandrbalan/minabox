@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.dp
 import eu.wewox.minabox.Example
 import eu.wewox.minabox.MinaBox
 import eu.wewox.minabox.MinaBoxItem
-import eu.wewox.minabox.rememberMinaBoxState
+import eu.wewox.minabox.rememberSaveableMinaBoxState
 import eu.wewox.minabox.ui.components.TopBar
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -58,7 +58,7 @@ fun MinaBoxAdvancedScreen(
         }
 
         val scope = rememberCoroutineScope()
-        val state = rememberMinaBoxState()
+        val state = rememberSaveableMinaBoxState()
         MinaBox(
             state = state,
             modifier = Modifier.padding(padding)

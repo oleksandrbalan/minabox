@@ -8,6 +8,9 @@ import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.Saver
+import androidx.compose.runtime.saveable.listSaver
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
@@ -27,11 +30,34 @@ import kotlinx.coroutines.launch
  * @param initialOffset The lambda to provide initial offset on the plane.
  * @return Instance of the [MinaBoxState].
  */
+@Deprecated(
+    message = "Use rememberSaveableMinaBoxState() which uses rememberSaveable API.",
+    replaceWith = ReplaceWith(
+        "rememberSaveableMinaBoxState(initialOffset)",
+        "eu.wewox.minabox.rememberSaveableMinaBoxState"
+    )
+)
 @Composable
 public fun rememberMinaBoxState(
     initialOffset: MinaBoxPositionProvider.() -> Offset = { Offset.Zero }
 ): MinaBoxState {
     return remember { MinaBoxState(initialOffset) }
+}
+
+/**
+ * Creates a [MinaBoxState] that is remembered across compositions and saved across activity or process recreation.
+ *
+ * @param initialOffset The lambda to provide initial offset on the plane.
+ * @return Instance of the [MinaBoxState].
+ */
+@Composable
+public fun rememberSaveableMinaBoxState(
+    initialOffset: MinaBoxPositionProvider.() -> Offset = { Offset.Zero },
+): MinaBoxState {
+    return rememberSaveable(
+        saver = MinaBoxState.Saver(),
+        init = { MinaBoxState(initialOffset) }
+    )
 }
 
 /**
@@ -280,4 +306,26 @@ public class MinaBoxState(
         public val viewportWidth: Float,
         public val viewportHeight: Float,
     )
+
+    internal companion object {
+
+        /**
+         * Creates a [Saver] that can save and restore a [MinaBoxState].
+         *
+         * @return A [Saver] instance for saving and restoring [MinaBoxState].
+         */
+        fun Saver(): Saver<MinaBoxState, *> = listSaver(
+            save = {
+                listOf(
+                    if (it::translateX.isInitialized) it.translateX.value else 0f,
+                    if (it::translateY.isInitialized) it.translateY.value else 0f,
+                )
+            },
+            restore = {
+                MinaBoxState {
+                    Offset(it[0], it[1])
+                }
+            }
+        )
+    }
 }
