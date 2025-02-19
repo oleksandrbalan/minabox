@@ -1,10 +1,11 @@
-import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.jetbrains.compose)
     alias(libs.plugins.mavenpublish)
+    alias(libs.plugins.compose.compiler)
     id("convention.jvm.toolchain")
 }
 
@@ -56,8 +57,5 @@ android {
         androidTarget {
             publishLibraryVariants("release", "debug")
         }
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
 }
