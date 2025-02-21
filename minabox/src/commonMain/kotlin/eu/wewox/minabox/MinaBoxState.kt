@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.Velocity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.coroutineScope
@@ -69,9 +70,11 @@ public fun rememberSaveableMinaBoxState(
 public class MinaBoxState(
     private val initialOffset: MinaBoxPositionProvider.() -> Offset
 ) {
-
     internal lateinit var translateX: Animatable<Float, AnimationVector1D>
     internal lateinit var translateY: Animatable<Float, AnimationVector1D>
+
+    private val isRtl: Boolean
+        get() = positionProvider.layoutDirection == LayoutDirection.Rtl
 
     /**
      * The position provider used to get items offsets.
@@ -154,7 +157,11 @@ public class MinaBoxState(
     public suspend fun dragBy(value: Offset) {
         coroutineScope {
             launch {
-                translateX.snapTo(translateX.value - value.x)
+                if (isRtl) {
+                    translateX.snapTo(translateX.value + value.x)
+                } else {
+                    translateX.snapTo(translateX.value - value.x)
+                }
             }
             launch {
                 translateY.snapTo(translateY.value - value.y)
@@ -204,7 +211,11 @@ public class MinaBoxState(
     public suspend fun flingBy(velocity: Velocity) {
         coroutineScope {
             launch {
-                translateX.animateDecay(-velocity.x, exponentialDecay())
+                if (isRtl) {
+                    translateX.animateDecay(velocity.x, exponentialDecay())
+                } else {
+                    translateX.animateDecay(-velocity.x, exponentialDecay())
+                }
             }
             launch {
                 translateY.animateDecay(-velocity.y, exponentialDecay())

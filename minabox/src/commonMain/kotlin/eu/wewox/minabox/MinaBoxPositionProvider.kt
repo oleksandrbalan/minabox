@@ -11,6 +11,10 @@ import androidx.compose.ui.unit.LayoutDirection
  * Interface to provide offset of the registered items.
  */
 public interface MinaBoxPositionProvider {
+    /**
+     * Current layout direction.
+     */
+    public val layoutDirection: LayoutDirection
 
     /**
      * Returns offset of the item with global [index].
@@ -66,7 +70,7 @@ public interface MinaBoxPositionProvider {
  */
 internal class MinaBoxPositionProviderImpl(
     internal val items: Map<Int, MinaBoxItem>,
-    internal val layoutDirection: LayoutDirection,
+    override val layoutDirection: LayoutDirection,
     internal val size: Size,
 ) : MinaBoxPositionProvider {
 
